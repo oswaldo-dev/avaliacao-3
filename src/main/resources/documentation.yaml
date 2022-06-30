@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: API de estados
+  description: API para controle de estados do Brasil, suas respectivas populações e suas respectivas areas.
+  version: 0.0.1
+  contact:
+    name: Suporte
+    email: oswaldo.filho.pb@compasso.com.br
+
+externalDocs:
+  description: Documentação externa
+  url: http://github.com
+
+servers:
+  - url: http://localhost:8080/api/
+    description: API
+
+paths:
+  /states:
+    get:
+      summary: Busca todas os estados.
+      responses:
+        200:
+          $ref: '#/components/responses/States'
+
+    post:
+      summary: Cadastra um novo estado.
+      description: O parâmetro Region deve ser cadastrado todo em letra maiúscula.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                region:
+                  type: string
+                population:
+                  type: number
+                capital:
+                  type: string
+                area:
+                  type: number
+      responses:
+        201:
+          $ref: '#/components/responses/State'
+
+  /states/:
+    get:
+      summary: Põe filtros de região, tamanho da população e tamanho da área.
+      parameters:
+        - name: region
+          description: "Coloque tudo em letra maiúscula"
+          in: query
+          schema:
+            type: string
+          required: false
+
+        - name: sort
+          description: "Coloque (population,desc ou area,desc)"
+          in: query
+          schema:
+            type: string
+          required: false
+
+      responses:
+        200:
+          $ref: '#/components/responses/States'
+        404:
+          description: Estado não encontrado.
+          content:
+            application/json:
+              example:
+                "Not Found"
+
+
+  /states/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: number
+        required: true
+    get:
+      summary: Busca o estado pelo ID.
+      responses:
+        200:
+          $ref: '#/components/responses/State'
+        404:
+          description: Estado não encontrado.
+          content:
+            application/json:
+              example:
+                "Not Found"
+    put:
+      summary: Atualiza um estado.
+      description: O parâmetro Region deve ser cadastrado todo em letra maiúscula.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                region:
+                  type: string
+                population:
+                  type: number
+                capital:
+                  type: string
+                area:
+                  type: number
+      responses:
+        200:
+          $ref: '#/components/responses/State'
+        404:
+          description: Estado não encontrado.
+          content:
+            application/json:
+              example:
+                "Not Found"
+    delete:
+      summary: Exclui um estado.
+      responses:
+        200:
+          $ref: '#/components/responses/State'
+        404:
+          description: Estado não encontrado.
+          content:
+            application/json:
+              example:
+                "Not Found"
+components:
+  schemas:
+    State:
+      type: object
+      title: "State"
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        region:
+          type: string
+          description: "Região onde o estado se encontra (usar letras maiúsculas para cadastrar parâmetro)"
+        population:
+          type: number
+        capital:
+          type: string
+        area:
+          type: number
+
+  responses:
+    State:
+      description: Sucesso
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: number
+              name:
+                type: string
+              region:
+                type: string
+              population:
+                type: number
+              capital:
+                type: string
+              area:
+                type: number
+    States:
+      description: Sucesso
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/State'
