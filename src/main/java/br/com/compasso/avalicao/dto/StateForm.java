@@ -12,7 +12,7 @@ public class StateForm {
     @NotBlank
     private String name;
     @NotNull
-    private Region region;
+    private String region;
     @NotNull
     private Long population;
     @NotBlank
@@ -31,6 +31,7 @@ public class StateForm {
     }
 
     public State toConvert() {
+        String region = String.valueOf(Region.valueOf(this.region.toUpperCase()));
         return new State(name, region, population, capital, area);
     }
 
@@ -42,11 +43,11 @@ public class StateForm {
         this.name = name;
     }
 
-    public Region getRegion() {
+    public String getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(String region) {
         this.region = region;
     }
 
@@ -75,9 +76,9 @@ public class StateForm {
     }
 
     public State update(Long id, StateRepository repository) {
-       State state = repository.getReferenceById(id);
+        State state = repository.getReferenceById(id);
         state.setName(this.name);
-        state.setRegion(this.region);
+        state.setRegion(String.valueOf(Region.valueOf(this.region.toUpperCase())));
         state.setPopulation(this.population);
         state.setCapital(this.capital);
         state.setArea(this.area);

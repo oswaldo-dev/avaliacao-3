@@ -15,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/states")
@@ -32,7 +31,7 @@ public class StatesController {
     }
 
     @GetMapping
-    public Page<StateDto> listAll(Region region, Pageable sort) {
+    public Page<StateDto> listAll(String region, Pageable sort) {
         return service.listStates(region, sort);
     }
 

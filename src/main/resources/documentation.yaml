@@ -25,7 +25,6 @@ paths:
 
     post:
       summary: Cadastra um novo estado.
-      description: O parâmetro Region deve ser cadastrado todo em letra maiúscula.
       requestBody:
         content:
           application/json:
@@ -51,17 +50,24 @@ paths:
       summary: Põe filtros de região, tamanho da população e tamanho da área.
       parameters:
         - name: region
-          description: "Coloque tudo em letra maiúscula"
           in: query
           schema:
             type: string
+            enum:
+              - SUL
+              - SUDESTE
+              - CENTRO_OESTE
+              - NORTE
+              - NORDESTE
           required: false
 
         - name: sort
-          description: "Coloque (population,desc ou area,desc)"
           in: query
           schema:
             type: string
+            enum:
+              - population,desc
+              - area,desc
           required: false
 
       responses:
@@ -95,7 +101,6 @@ paths:
                 "Not Found"
     put:
       summary: Atualiza um estado.
-      description: O parâmetro Region deve ser cadastrado todo em letra maiúscula.
       requestBody:
         content:
           application/json:
@@ -144,7 +149,6 @@ components:
           type: string
         region:
           type: string
-          description: "Região onde o estado se encontra (usar letras maiúsculas para cadastrar parâmetro)"
         population:
           type: number
         capital:

@@ -11,8 +11,8 @@ public class State {
     private Long id;
 
     private String name;
-    @Enumerated(EnumType.STRING)
-    private Region region;
+
+    private String region;
     private Long population;
     private String capital;
     private BigDecimal area;
@@ -20,7 +20,7 @@ public class State {
     public State() {
     }
 
-    public State(Long id, String name, Region region, Long population, String capital, BigDecimal area) {
+    public State(Long id, String name, String region, Long population, String capital, BigDecimal area) {
         this.id = id;
         this.name = name;
         this.region = region;
@@ -29,7 +29,7 @@ public class State {
         this.area = area;
     }
 
-    public State(String name, Region region, Long population, String capital, BigDecimal area) {
+    public State(String name, String region, Long population, String capital, BigDecimal area) {
         this.name = name;
         this.region = region;
         this.population = population;
@@ -53,11 +53,11 @@ public class State {
         this.name = name;
     }
 
-    public Region getRegion() {
+    public String getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(String region) {
         this.region = region;
     }
 

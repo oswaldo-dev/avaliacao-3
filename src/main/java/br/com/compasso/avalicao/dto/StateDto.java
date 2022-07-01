@@ -5,14 +5,12 @@ import br.com.compasso.avalicao.model.State;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class StateDto {
 
     private Long id;
     private String name;
-    private Region region;
+    private String region;
     private Long population;
     private String capital;
     private BigDecimal area;
@@ -29,7 +27,7 @@ public class StateDto {
         this.area = state.getArea();
     }
 
-    public StateDto(String name, Region region, Long population, String capital, BigDecimal area) {
+    public StateDto(String name, String region, Long population, String capital, BigDecimal area) {
         this.name = name;
         this.region = region;
         this.population = population;
@@ -50,7 +48,7 @@ public class StateDto {
         return name;
     }
 
-    public Region getRegion() {
+    public String getRegion() {
         return region;
     }
 

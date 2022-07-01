@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,7 +36,7 @@ public class StateService {
         return ResponseEntity.created(uri).body(new StateDto(state));
     }
 
-    public Page<StateDto> listStates(@RequestParam(required = false) Region region,
+    public Page<StateDto> listStates(@RequestParam(required = false) String region,
                                      @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable sort) {
         log.info("listStates() - INICIO - listando todos os estados.");
         if (region == null) {
@@ -45,7 +44,7 @@ public class StateService {
             log.info("listStates() - FIM - devolvendo todos os estados.");
             return StateDto.toConvertList(states);
         } else {
-            Page<State> states = repository.findByRegion(region, sort);
+            Page<State> states = repository.findByRegion(String.valueOf(Region.valueOf(region.toUpperCase())), sort);
             return StateDto.toConvertList(states);
         }
     }
