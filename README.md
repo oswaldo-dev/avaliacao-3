@@ -17,7 +17,7 @@ buscar um estado (por ID, tamanho da população e tamanho da área), atualizar 
 ### Cadastro:<br>
 Aqui é onde é feito o cadastro dos estados onde temos o campo:<br>
 - Nome : Do tipo String
-- Região : Do tipo String aceitando somente caracteris maiúsculos (NORTE, NORDESTE, SUL, SUDESTE, CENTRO_OESTE)
+- Região : Do tipo String 
 - População : Do tipo Long
 - Capital : Do tipo String
 - Area : Do tipo BigDecimal
