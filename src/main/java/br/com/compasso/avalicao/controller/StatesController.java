@@ -2,7 +2,6 @@ package br.com.compasso.avalicao.controller;
 
 import br.com.compasso.avalicao.dto.StateDto;
 import br.com.compasso.avalicao.dto.StateForm;
-import br.com.compasso.avalicao.model.Region;
 import br.com.compasso.avalicao.service.StateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

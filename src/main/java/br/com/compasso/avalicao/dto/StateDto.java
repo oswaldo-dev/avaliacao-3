@@ -1,6 +1,5 @@
 package br.com.compasso.avalicao.dto;
 
-import br.com.compasso.avalicao.model.Region;
 import br.com.compasso.avalicao.model.State;
 import org.springframework.data.domain.Page;
 
