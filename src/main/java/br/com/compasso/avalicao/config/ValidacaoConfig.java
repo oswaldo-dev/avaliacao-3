@@ -34,4 +34,9 @@ public class ValidacaoConfig {
         return erroDtos;
     }
 
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ErroDto handleRegion() {
+        return new ErroDto("region", "não foi encontrado");
+    }
 }

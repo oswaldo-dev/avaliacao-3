@@ -66,15 +66,18 @@ public class StateService {
             State state = stateForm.update(id, repository);
             return ResponseEntity.ok(new StateDto(state));
         }
+        log.info("updateState(Long id) - FIM - estado com id {} atualizando", id);
         return ResponseEntity.notFound().build();
     }
 
     public ResponseEntity<?> deleteState(Long id) {
+        log.info("deleteState(Long id) - INICIO - deletando estado com id {}", id);
         Optional<State> optional = repository.findById(id);
         if(optional.isPresent()) {
             repository.deleteById(id);
             return ResponseEntity.ok().build();
         }
+        log.info("deleteState(Long id) - FIM - estado com id {} deletando", id);
         return ResponseEntity.notFound().build();
     }
 

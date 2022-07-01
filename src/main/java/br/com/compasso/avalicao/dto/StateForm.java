@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class StateForm {
     @NotBlank
     private String name;
-    @NotNull
+    @NotBlank
     private String region;
     @NotNull
     private Long population;
